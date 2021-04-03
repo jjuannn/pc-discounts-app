@@ -1,0 +1,20 @@
+.footer {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  width: 100vw;
+  bottom: 0px;
+  background: var(--gray2);
+  font-size: 0.9em;
+  font-family: var(--bold-kanit);
+  z-index: 2;
+}
+.footer-paragraph {
+  margin: 10px;
+}
+.footer-texts {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin-bottom: 15px;
+}
