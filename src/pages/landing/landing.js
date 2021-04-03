@@ -7,10 +7,10 @@ import "./landing.css";
 export default function LandingPage() {
   return (
     <>
-      <div className="landing-container">
+      <section className="landing-container">
         <Presentation />
         <img className="landing-image" src={gaben} />
-      </div>
+      </section>
     </>
   );
 }
