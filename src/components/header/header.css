@@ -12,3 +12,6 @@
   display: inline-block;
   font-size: 20px;
 }
+.header-title a:hover {
+  text-decoration: none;
+}

@@ -6,7 +6,11 @@ export default function Header() {
   return (
     <>
       <header className="header">
-        <p className="header-title">Steam Discounts</p>
+        <p className="header-title">
+          <a className="title-anchor" href="/">
+            Steam Discounts
+          </a>
+        </p>
       </header>
       <TopDivider />
     </>
