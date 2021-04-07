@@ -1,0 +1,15 @@
+.offers-title {
+  font-family: var(--bold-kanit);
+  margin-bottom: 50px;
+}
+
+.pagination-buttons-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 30px;
+}
+.pagination-buttons-container button {
+  width: 17rem;
+  margin: 2px;
+}
