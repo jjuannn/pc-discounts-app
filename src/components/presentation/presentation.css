@@ -5,7 +5,7 @@
 }
 .presentation-button {
   cursor: pointer;
-  margin: 10px;
+  margin: 8px;
 }
 .presentation-button:hover {
   background: black;
