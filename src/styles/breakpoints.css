@@ -11,4 +11,8 @@
   .footer-texts {
     flex-direction: row;
   }
+  .pagination-buttons-container {
+    flex-direction: row;
+    justify-content: center;
+  }
 }
