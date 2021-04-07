@@ -1,0 +1,18 @@
+.offers-container {
+  flex: 1;
+  width: 90%;
+  margin: auto;
+  text-align: center;
+  margin-bottom: 50px;
+}
+
+.filters-container {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 30px;
+  padding: 10px;
+}
+
+.filters-container input {
+  margin-bottom: 20px;
+}
