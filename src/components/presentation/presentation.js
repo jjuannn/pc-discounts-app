@@ -7,7 +7,7 @@ export default function Presentation() {
   return (
     <>
       <p className="presentation-text">Find here the best Steam offers!</p>
-      <Link className="presentation-button" to="#">
+      <Link className="presentation-button" to="/offers/all/page=0">
         <Button text="Get Started" />
       </Link>
     </>
