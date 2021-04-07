@@ -9,7 +9,7 @@ export default function LandingPage() {
     <>
       <section className="landing-container">
         <Presentation />
-        <img className="landing-image" src={gaben} />
+        <img className="landing-image" alt="" src={gaben} />
       </section>
     </>
   );
