@@ -1,0 +1,12 @@
+.game-card {
+  width: 17rem;
+  display: inline-block;
+  margin: 0px 5px 10px 5px;
+}
+.original-price {
+  color: red;
+}
+.game-title {
+  font-family: var(--bold-kanit);
+  height: 3em;
+}
