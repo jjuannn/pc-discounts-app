@@ -8,5 +8,8 @@
 }
 .button:hover {
   color: white;
-  background: inherit;
+  background: black;
+}
+.button:disabled {
+  cursor: not-allowed;
 }
