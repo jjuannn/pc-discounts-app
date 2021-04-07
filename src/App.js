@@ -2,7 +2,10 @@ import "./styles/root.css";
 import Header from "./components/header/header";
 import Footer from "./components/footer/footer";
 import LandingPage from "./pages/landing/landing";
+import OffersPage from "./pages/offers/offers";
+import ResultsPage from "./pages/results/results";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import "./styles/globals.css";
 import "./styles/breakpoints.css";
 import "./App.css";
 
@@ -15,8 +18,11 @@ function App() {
           <Route path="/" exact>
             <LandingPage />
           </Route>
-          <Route path="/test" exact>
-            <p style={{ flex: 1 }}>Testing this</p>
+          <Route path="/offers/all/page=:page" exact>
+            <OffersPage />
+          </Route>
+          <Route path="/offers/filter/page=:page&lower=:lower&higher=:higher" exact>
+            <ResultsPage />
           </Route>
         </Switch>
         <Footer />
