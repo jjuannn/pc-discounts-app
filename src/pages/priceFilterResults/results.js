@@ -8,7 +8,7 @@ import Loading from "../../components/loading/loading";
 import { useFetchForFilters } from "../../hooks/useFetch";
 import "./results.css";
 
-export default function ResultsPage() {
+export default function PriceFilterResultsPage() {
   const { page, lower, higher } = useParams();
   const [pageNumber, setPageNumber] = useState(Number(page));
   const [redirect, setRedirect] = useState(false);
@@ -31,7 +31,9 @@ export default function ResultsPage() {
   return (
     <section className="results-container">
       {redirect && (
-        <Redirect to={`/offers/filter/page=${pageNumber}&lower=10&higher=27`} />
+        <Redirect
+          to={`/offers/filter/page=${pageNumber}&lower=${lower}&higher=${higher}`}
+        />
       )}
       {error && <p>"Error"</p>}
       {loading && <Loading />}
@@ -49,10 +51,11 @@ export default function ResultsPage() {
                       handlePrevPage(pageNumber);
                     }
               }
-              disabled={pageNumber === 0 ? true : false}
+              disabled={pageNumber === 0}
               text="Prev page"
             />{" "}
             <Button
+              disabled={data.length < 60}
               onClick={() => {
                 handleNextPage(pageNumber);
               }}
@@ -60,10 +63,9 @@ export default function ResultsPage() {
             />
           </div>
           <Container>
-            {data &&
-              data.map((offer, i) => {
-                return <Card {...offer} key={i} />;
-              })}
+            {data.map((offer, i) => {
+              return <Card {...offer} key={i} />;
+            })}
           </Container>
         </>
       )}
