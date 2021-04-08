@@ -31,11 +31,16 @@ export function getByPriceBetween(page, minPrice, higherPrice) {
     });
 }
 
-export function getByTitle(title) {
-  return fetch(`${BASE_URL}title=${title}`)
+export function getByTitle(page, title) {
+  return fetch(`${BASE_URL}page=${page}&title=${title}`)
     .then((r) => (!r.ok ? new Error("API ERROR") : r))
     .then((r) => r.json())
     .then((jsonResponse) => {
-      return jsonResponse;
+      return jsonResponse.map((offer) => {
+        return offerMapper(offer);
+      });
+    })
+    .then((offers) => {
+      return offers;
     });
 }
