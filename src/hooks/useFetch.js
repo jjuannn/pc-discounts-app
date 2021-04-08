@@ -52,7 +52,7 @@ export function useFetch(fetchFunction, filter1 = "", filter2 = "") {
 
 export function useFetchForFilters(
   fetchFunction,
-  { title, lower, higher, pageNumber }
+  { page, title, lower, higher, pageNumber }
 ) {
   const [state, dispatch] = useReducer(fetchReducer, INITIAL_VALUES);
   useEffect(() => {
@@ -60,7 +60,7 @@ export function useFetchForFilters(
     const getData = async () => {
       try {
         if (title) {
-          const data = await fetchFunction(title);
+          const data = await fetchFunction(page, title);
           dispatch({ type: ACTIONS.SUCCESS, payload: data });
         } else {
           const data = await fetchFunction(pageNumber, lower, higher);
