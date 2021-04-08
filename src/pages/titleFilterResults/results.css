@@ -1,0 +1,7 @@
+.results-container {
+  flex: 1;
+  width: 90%;
+  margin: auto;
+  text-align: center;
+  margin-bottom: 50px;
+}
