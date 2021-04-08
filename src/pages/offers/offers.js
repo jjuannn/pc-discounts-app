@@ -15,8 +15,13 @@ export default function OffersPage() {
   const [pageNumber, setPageNumber] = useState(Number(page));
   const [lowerPrice, setLowerPrice] = useState(0);
   const [higherPrice, setHigherPrice] = useState(1);
-
+  const [gameTitle, setGameTitle] = useState("");
   const { data, loading, error } = useFetch(getPage, pageNumber);
+
+  const changeGameTitle = ({ target }) => {
+    const { value } = target;
+    setGameTitle(value);
+  };
 
   const changeLowerPrice = ({ target }) => {
     const { value } = target;
@@ -59,6 +64,7 @@ export default function OffersPage() {
               <strong>Lower Price: ${lowerPrice}</strong>
             </label>
             <input
+              className="price-filter"
               value={lowerPrice}
               onChange={changeLowerPrice}
               placeholder="lower price"
@@ -71,6 +77,7 @@ export default function OffersPage() {
               <strong>Higher Price: ${higherPrice}</strong>
             </label>
             <input
+              className="price-filter"
               value={higherPrice}
               onChange={changeHigherPrice}
               placeholder="higher price"
@@ -84,6 +91,22 @@ export default function OffersPage() {
             >
               <Button text="Filter by prices" />
             </Link>
+            <hr />
+            <label htmlFor="title-filter">
+              <strong>Or you can filter by name: </strong>
+            </label>
+            <input
+              className="title-filter"
+              value={gameTitle}
+              name="title-filter"
+              onChange={changeGameTitle}
+              placeholder="Introduce a name"
+              type="text"
+            />
+            <Link to={`/offers/filter/title=${gameTitle}`}>
+              <Button disabled={gameTitle.length === 0} text="Filter by name" />
+            </Link>
+            <hr />
           </div>
           <div className="pagination-buttons-container">
             <Button
