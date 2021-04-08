@@ -23,7 +23,7 @@ export default function Card({
             Saving {Math.floor(savings)}%
           </strong>
         </p>
-        <a href={`/offers/id=${dealID}`}>
+        <a href={`/offers/view/id=${dealID}`}>
           <Button text="View details" />
         </a>
       </div>
