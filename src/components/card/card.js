@@ -1,7 +1,6 @@
 import React from "react";
 import Button from "../button/button";
 import "bootstrap/dist/css/bootstrap.css";
-
 import "./card.css";
 
 export default function Card({
@@ -20,7 +19,7 @@ export default function Card({
         <p className="card-text">
           <strong>
             <s className="original-price">${normalPrice}</s> ${salePrice} <br />
-            Saving {Math.floor(savings)}%
+            Saving {savings}%
           </strong>
         </p>
         <a href={`/offers/view/id=${dealID}`}>
