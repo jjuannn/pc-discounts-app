@@ -5,6 +5,7 @@ import LandingPage from "./pages/landing/landing";
 import OffersPage from "./pages/offers/offers";
 import PriceFilterResultsPage from "./pages/priceFilterResults/results";
 import TitleFilterResultsPage from "./pages/titleFilterResults/results";
+import { CacheContextProvider } from "./context/cacheContext";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import "./styles/globals.css";
 import "./styles/breakpoints.css";
@@ -19,18 +20,20 @@ function App() {
           <Route path="/" exact>
             <LandingPage />
           </Route>
-          <Route path="/offers/all/page=:page" exact>
-            <OffersPage />
-          </Route>
-          <Route
-            path="/offers/filter/page=:page&lower=:lower&higher=:higher"
-            exact
-          >
-            <PriceFilterResultsPage />
-          </Route>
-          <Route path="/offers/filter/title=:title" exact>
-            <TitleFilterResultsPage />
-          </Route>
+          <CacheContextProvider>
+            <Route path="/offers/all/page=:page" exact>
+              <OffersPage />
+            </Route>
+            <Route
+              path="/offers/filter/page=:page&lower=:lower&higher=:higher"
+              exact
+            >
+              <PriceFilterResultsPage />
+            </Route>
+            <Route path="/offers/filter/title=:title" exact>
+              <TitleFilterResultsPage />
+            </Route>
+          </CacheContextProvider>
         </Switch>
         <Footer />
       </Router>
