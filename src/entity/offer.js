@@ -12,7 +12,7 @@ export default class Offer {
     this.dealID = dealID;
     this.normalPrice = normalPrice;
     this.salePrice = salePrice;
-    this.savings = savings;
+    this.savings = Math.floor(savings);
     this.steamRatingText = steamRatingText;
     this.steamRatingPercent = steamRatingPercent;
     this.thumb = thumb;
