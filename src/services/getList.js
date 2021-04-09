@@ -9,9 +9,6 @@ export function getPage(page) {
       return jsonResponse.map((offer) => {
         return offerMapper(offer);
       });
-    })
-    .then((offers) => {
-      return offers;
     });
 }
 
@@ -25,22 +22,16 @@ export function getByPriceBetween(page, minPrice, higherPrice) {
       return jsonResponse.map((offer) => {
         return offerMapper(offer);
       });
-    })
-    .then((offers) => {
-      return offers;
     });
 }
 
-export function getByTitle(page, title) {
-  return fetch(`${BASE_URL}page=${page}&title=${title}`)
+export function getByTitle(title) {
+  return fetch(`${BASE_URL}title=${title}`)
     .then((r) => (!r.ok ? new Error("API ERROR") : r))
     .then((r) => r.json())
     .then((jsonResponse) => {
       return jsonResponse.map((offer) => {
         return offerMapper(offer);
       });
-    })
-    .then((offers) => {
-      return offers;
     });
 }
