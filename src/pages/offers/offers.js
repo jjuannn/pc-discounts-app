@@ -71,7 +71,7 @@ export default function OffersPage() {
               Filters
             </button>
           </p>
-          <div class="collapse" id="collapseExample">
+          <div className="collapse" id="collapseExample">
             <div className="filters-container">
               <label htmlFor="lower-price">
                 <strong>Lower Price: ${lowerPrice}</strong>
