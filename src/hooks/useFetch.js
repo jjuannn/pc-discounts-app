@@ -1,4 +1,5 @@
-import { useEffect, useReducer } from "react";
+import { useEffect, useReducer, useContext } from "react";
+import cacheContext from "../context/cacheContext";
 
 const ACTIONS = {
   LOADING: "LOADING",
@@ -27,21 +28,30 @@ function fetchReducer(state, action) {
   }
 }
 
-export function useFetch(fetchFunction, filter1 = "", filter2 = "") {
+export function useFetch(fetchFunction, param) {
   const [state, dispatch] = useReducer(fetchReducer, INITIAL_VALUES);
-  // FALTA IMPLEMENTAR CACHE => chusmear eso para hacerlo lo + eficiente posible
+  const cache = useContext(cacheContext);
   useEffect(() => {
+    if (cache.page && cache.page[param]) {
+      dispatch({ type: ACTIONS.SUCCESS, payload: cache.page[param] });
+      return;
+    }
+
     dispatch({ type: ACTIONS.LOADING });
     const getData = async () => {
       try {
-        const data = await fetchFunction(filter1, filter2);
+        const data = await fetchFunction(param);
         dispatch({ type: ACTIONS.SUCCESS, payload: data });
+        cache.dispatch({
+          type: "SET_CACHE",
+          payload: { key: param, value: data },
+        });
       } catch (err) {
         dispatch({ type: ACTIONS.FAILURE, payload: err });
       }
     };
     getData();
-  }, [fetchFunction, filter1, filter2]);
+  }, [fetchFunction, param]);
 
   return {
     data: state.data,
@@ -52,19 +62,44 @@ export function useFetch(fetchFunction, filter1 = "", filter2 = "") {
 
 export function useFetchForFilters(
   fetchFunction,
-  { page, title, lower, higher, pageNumber }
+  { title, lower, higher, pageNumber }
 ) {
   const [state, dispatch] = useReducer(fetchReducer, INITIAL_VALUES);
+  const cache = useContext(cacheContext);
   useEffect(() => {
+    if (title) {
+      if (cache.page && cache.page[title]) {
+        dispatch({ type: ACTIONS.SUCCESS, payload: cache.page[title] });
+        return;
+      }
+    } else {
+      if (cache.page && cache.page[pageNumber + lower + higher]) {
+        dispatch({
+          type: ACTIONS.SUCCESS,
+          payload: cache.page[pageNumber + lower + higher],
+        });
+        return;
+      }
+    }
+
     dispatch({ type: ACTIONS.LOADING });
     const getData = async () => {
       try {
         if (title) {
-          const data = await fetchFunction(page, title);
+          const data = await fetchFunction(title);
           dispatch({ type: ACTIONS.SUCCESS, payload: data });
+
+          cache.dispatch({
+            type: "SET_CACHE",
+            payload: { key: title, value: data },
+          });
         } else {
           const data = await fetchFunction(pageNumber, lower, higher);
           dispatch({ type: ACTIONS.SUCCESS, payload: data });
+          cache.dispatch({
+            type: "SET_CACHE",
+            payload: { key: pageNumber + lower + higher, value: data },
+          });
         }
       } catch (err) {
         dispatch({ type: ACTIONS.FAILURE, payload: err });
