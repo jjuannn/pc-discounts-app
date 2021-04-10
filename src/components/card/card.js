@@ -1,15 +1,14 @@
 import React from "react";
-import Button from "../button/button";
 import "bootstrap/dist/css/bootstrap.css";
 import "./card.css";
 
 export default function Card({
-  dealID,
   normalPrice,
   salePrice,
   savings,
   thumb,
   title,
+  steamRatingPercent,
 }) {
   return (
     <div className="card game-card">
@@ -19,12 +18,10 @@ export default function Card({
         <p className="card-text">
           <strong>
             <s className="original-price">${normalPrice}</s> ${salePrice} <br />
-            Saving {savings}%
+            Saving {savings}% <br />
+            <i className="fas fa-thumbs-up"></i> {steamRatingPercent}%
           </strong>
         </p>
-        <a href={`/offers/view/id=${dealID}`}>
-          <Button text="View details" />
-        </a>
       </div>
     </div>
   );
