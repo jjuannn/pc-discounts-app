@@ -40,27 +40,33 @@ export default function PriceFilterResultsPage() {
       {data && (
         <>
           <h1 className="offers-title">
-            Looking for offers between ${lower} and ${higher}
+            {data.length === 0
+              ? `Oops! There is no results between that prices!`
+              : `Looking for offers between $${lower} and $${higher}`}
           </h1>
           <div className="pagination-buttons-container">
-            <Button
-              onClick={
-                pageNumber === 0
-                  ? null
-                  : () => {
-                      handlePrevPage(pageNumber);
-                    }
-              }
-              disabled={pageNumber === 0}
-              text="Prev page"
-            />{" "}
-            <Button
-              disabled={data.length < 60}
-              onClick={() => {
-                handleNextPage(pageNumber);
-              }}
-              text="Next page"
-            />
+            {data.length === 0 ? null : (
+              <>
+                <Button
+                  onClick={
+                    pageNumber === 0
+                      ? null
+                      : () => {
+                          handlePrevPage(pageNumber);
+                        }
+                  }
+                  disabled={pageNumber === 0}
+                  text="Prev page"
+                />
+                <Button
+                  disabled={data.length < 60}
+                  onClick={() => {
+                    handleNextPage(pageNumber);
+                  }}
+                  text="Next page"
+                />
+              </>
+            )}
           </div>
           <Container>
             {data.map((offer, i) => {

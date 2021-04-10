@@ -18,7 +18,11 @@ export default function TitleFilterResultsPage() {
       {error && <p className="error-message">{error.message}</p>}
       {data && (
         <>
-          <h1 className="offers-title">Looking for results with "{title}"</h1>
+          <h1 className="offers-title">
+            {data.length === 0
+              ? `Oops! There is no results for ${title}`
+              : `Looking for results with ${title}`}
+          </h1>
           <Container>
             {data.map((result, i) => {
               return <Card {...result} key={i} />;
