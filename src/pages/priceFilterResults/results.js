@@ -35,7 +35,7 @@ export default function PriceFilterResultsPage() {
           to={`/offers/filter/page=${pageNumber}&lower=${lower}&higher=${higher}`}
         />
       )}
-      {error && <p>"Error"</p>}
+      {error && <p className="error-message">{error.message}</p>}
       {loading && <Loading />}
       {data && (
         <>

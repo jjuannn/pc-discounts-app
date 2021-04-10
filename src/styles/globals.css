@@ -13,3 +13,8 @@
   width: 17rem;
   margin: 2px;
 }
+.error-message {
+  font-family: var(--bold-kanit);
+  font-size: 3em;
+  color: rgb(175, 63, 63);
+}

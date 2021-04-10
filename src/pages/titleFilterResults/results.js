@@ -15,7 +15,7 @@ export default function TitleFilterResultsPage() {
   return (
     <section className="results-container">
       {loading && <Loading />}
-      {error && <p>Error</p>}
+      {error && <p className="error-message">{error.message}</p>}
       {data && (
         <>
           <h1 className="offers-title">Looking for results with "{title}"</h1>
