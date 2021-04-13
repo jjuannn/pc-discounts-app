@@ -1,6 +1,10 @@
 import React from "react";
-import "./container.css";
+import styled from "@emotion/styled";
 
-export default function Container({ children }) {
-  return <div className="cards-container">{children}</div>;
+const Container = styled.div`
+  text-align: center;
+`;
+
+export default function ContainerComponent({ children }) {
+  return <Container>{children}</Container>;
 }

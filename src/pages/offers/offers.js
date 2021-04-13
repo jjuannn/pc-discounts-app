@@ -1,15 +1,24 @@
 import React, { useState } from "react";
 import { useParams, Redirect } from "react-router";
-import { Link } from "react-router-dom";
 import Button from "../../components/button/button";
 import Card from "../../components/card/card";
+import PaginationButtonsContainer from "../../components/paginationButtons/paginationButtons";
 import Container from "../../components/cardsContainer/container";
 import Loading from "../../components/loading/loading";
 import Filters from "../../components/filters/filters";
 import { useFetch } from "../../hooks/useFetch";
 import { getPage } from "../../services/getList";
-import "./offers.css";
-import "bootstrap/dist/css/bootstrap.css";
+import Title from "../../components/title/title";
+import ErrorMessage from "../../components/errorMessage/error";
+import styled from "@emotion/styled";
+
+const OffersContainer = styled.section`
+  flex: 1;
+  width: 90%;
+  margin: auto;
+  text-align: center;
+  margin-bottom: 50px;
+`;
 
 export default function OffersPage() {
   const { page } = useParams();
@@ -29,15 +38,15 @@ export default function OffersPage() {
   };
 
   return (
-    <section className="offers-container">
+    <OffersContainer>
       {loading && <Loading />}
       {redirect && <Redirect to={`/offers/all/page=${pageNumber}`} />}
-      {error && <p className="error-message">{error.message}</p>}
+      {error && <ErrorMessage text={error.message} />}
       {data && (
         <>
           <Filters />
-          <h1 className="offers-title">Check out this! </h1>
-          <div className="pagination-buttons-container">
+          <Title text="Check out this!" />
+          <PaginationButtonsContainer>
             <Button
               onClick={
                 pageNumber === 0
@@ -55,7 +64,7 @@ export default function OffersPage() {
               }}
               text="Next page"
             />
-          </div>
+          </PaginationButtonsContainer>
           <Container>
             {" "}
             {data &&
@@ -65,6 +74,6 @@ export default function OffersPage() {
           </Container>
         </>
       )}
-    </section>
+    </OffersContainer>
   );
 }

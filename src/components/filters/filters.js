@@ -2,6 +2,35 @@ import React from "react";
 import useFilters from "../../hooks/useFilters";
 import Button from "../button/button";
 import { Link } from "react-router-dom";
+import styled from "@emotion/styled";
+
+const TitleFilter = styled.input`
+  border: 2px solid black;
+  text-align: center;
+  line-height: 40px;
+  margin-bottom: 20px;
+`;
+
+const PriceFilter = styled.input`
+  margin-bottom: 20px;
+`;
+
+const FilterButton = styled.button`
+  border: none;
+  padding: 10px;
+  font-family: var(--bold-kanit);
+  color: black;
+  background: var(--gray2);
+  cursor: pointer;
+`;
+
+const FiltersContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 30px;
+  padding: 10px;
+`;
+
 export default function Filters(props) {
   const {
     higherPrice,
@@ -14,8 +43,7 @@ export default function Filters(props) {
   return (
     <>
       <p>
-        <button
-          className="filter-button"
+        <FilterButton
           text="Show filters"
           data-toggle="collapse"
           data-target="#collapseExample"
@@ -23,15 +51,14 @@ export default function Filters(props) {
           aria-controls="collapseExample"
         >
           Filters
-        </button>
+        </FilterButton>
       </p>
       <div className="collapse" id="collapseExample">
-        <div className="filters-container">
+        <FiltersContainer>
           <label htmlFor="lower-price">
             <strong>Lower Price: ${lowerPrice}</strong>
           </label>
-          <input
-            className="price-filter"
+          <PriceFilter
             value={lowerPrice}
             onChange={changeLowerPrice}
             placeholder="lower price"
@@ -43,8 +70,7 @@ export default function Filters(props) {
           <label htmlFor="higher-price">
             <strong>Higher Price: ${higherPrice}</strong>
           </label>
-          <input
-            className="price-filter"
+          <PriceFilter
             value={higherPrice}
             onChange={changeHigherPrice}
             placeholder="higher price"
@@ -62,7 +88,7 @@ export default function Filters(props) {
           <label htmlFor="title-filter">
             <strong>Or you can filter by name: </strong>
           </label>
-          <input
+          <TitleFilter
             className="title-filter"
             value={gameTitle}
             name="title-filter"
@@ -74,7 +100,7 @@ export default function Filters(props) {
             <Button disabled={gameTitle.length === 0} text="Filter by name" />
           </Link>
           <hr />
-        </div>
+        </FiltersContainer>
       </div>
     </>
   );

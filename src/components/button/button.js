@@ -1,10 +1,30 @@
 import React from "react";
-import "./button.css";
+import styled from "@emotion/styled";
 
-export default function Button({ text, disabled = null, onClick = () => {} }) {
+const Button = styled.button`
+  border: none;
+  padding: 10px;
+  font-family: var(--bold-kanit);
+  color: black;
+  background: var(--gray2);
+  cursor: pointer;
+  &:hover {
+    color: white;
+    background: black;
+  }
+  &:disabled {
+    cursor: not-allowed;
+  }
+`;
+
+export default function ButtonComponent({
+  text,
+  disabled = null,
+  onClick = () => {},
+}) {
   return (
-    <button disabled={disabled} onClick={onClick} className="button">
+    <Button disabled={disabled} onClick={onClick}>
       {text}
-    </button>
+    </Button>
   );
 }

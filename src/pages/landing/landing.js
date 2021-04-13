@@ -1,16 +1,33 @@
 import React from "react";
 import Presentation from "../../components/presentation/presentation";
 import gaben from "../../assets/gaben1.png";
+import styled from "@emotion/styled";
 
-import "./landing.css";
+const LandingContainer = styled.section`
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  justify-content: center;
+  align-items: center;
+`;
+
+const Img = styled.img`
+  width: 300px;
+  z-index: 1;
+  position: relative;
+  top: 10px;
+  @media screen and (min-width: 768px) {
+    width: 400px;
+  }
+`;
 
 export default function LandingPage() {
   return (
     <>
-      <section className="landing-container">
+      <LandingContainer>
         <Presentation />
-        <img className="landing-image" alt="" src={gaben} />
-      </section>
+        <Img alt="" src={gaben} />
+      </LandingContainer>
     </>
   );
 }

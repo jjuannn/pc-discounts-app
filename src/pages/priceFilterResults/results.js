@@ -5,8 +5,19 @@ import Container from "../../components/cardsContainer/container";
 import Card from "../../components/card/card";
 import Button from "../../components/button/button";
 import Loading from "../../components/loading/loading";
+import Title from "../../components/title/title";
+import ErrorMessage from "../../components/errorMessage/error";
+import PaginationButtonsContainer from "../../components/paginationButtons/paginationButtons";
 import { useFetchForFilters } from "../../hooks/useFetch";
-import "./results.css";
+import styled from "@emotion/styled";
+
+const SectionContainer = styled.section`
+  flex: 1;
+  width: 90%;
+  margin: auto;
+  text-align: center;
+  margin-bottom: 50px;
+`;
 
 export default function PriceFilterResultsPage() {
   const { page, lower, higher } = useParams();
@@ -29,22 +40,24 @@ export default function PriceFilterResultsPage() {
   };
 
   return (
-    <section className="results-container">
+    <SectionContainer>
       {redirect && (
         <Redirect
           to={`/offers/filter/page=${pageNumber}&lower=${lower}&higher=${higher}`}
         />
       )}
-      {error && <p className="error-message">{error.message}</p>}
+      {error && <ErrorMessage text={error.message} />}
       {loading && <Loading />}
       {data && (
         <>
-          <h1 className="offers-title">
-            {data.length === 0
-              ? `Oops! There is no results between that prices!`
-              : `Looking for offers between $${lower} and $${higher}`}
-          </h1>
-          <div className="pagination-buttons-container">
+          <Title
+            text={
+              data.length === 0
+                ? `Oops! There is no results between that prices!`
+                : `Looking for offers between $${lower} and $${higher}`
+            }
+          />
+          <PaginationButtonsContainer>
             {data.length === 0 ? null : (
               <>
                 <Button
@@ -67,7 +80,7 @@ export default function PriceFilterResultsPage() {
                 />
               </>
             )}
-          </div>
+          </PaginationButtonsContainer>
           <Container>
             {data.map((offer, i) => {
               return <Card {...offer} key={i} />;
@@ -75,6 +88,6 @@ export default function PriceFilterResultsPage() {
           </Container>
         </>
       )}
-    </section>
+    </SectionContainer>
   );
 }
