@@ -1,4 +1,3 @@
-import "./styles/root.css";
 import Header from "./components/header/header";
 import Footer from "./components/footer/footer";
 import LandingPage from "./pages/landing/landing";
@@ -7,9 +6,6 @@ import PriceFilterResultsPage from "./pages/priceFilterResults/results";
 import TitleFilterResultsPage from "./pages/titleFilterResults/results";
 import { CacheContextProvider } from "./context/cacheContext";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-import "./styles/globals.css";
-import "./styles/breakpoints.css";
-import "./App.css";
 
 function App() {
   return (
