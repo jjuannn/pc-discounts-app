@@ -22,3 +22,6 @@ Follow the following steps for a correct installation:
 Features pending to be added
 
 - - [x] A remade with Styled Components
+
+## Project images:
+![home_page](/public/home.png)
