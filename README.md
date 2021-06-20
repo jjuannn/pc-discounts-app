@@ -21,4 +21,4 @@ Follow the following steps for a correct installation:
 
 Features pending to be added
 
-- - [ ] A remade with Styled Components
+- - [x] A remade with Styled Components
