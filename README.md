@@ -17,11 +17,9 @@ Follow the following steps for a correct installation:
 - Run `npm install` to install the dependencies (this could take a while!)
 - Open your browser and go to `http://localhost:3000` to use the app
 
-## TO-DO:
+## Deployments: 
 
-Features pending to be added
-
-- - [x] A remade with Styled Components
+- https://pc-discounts-app.vercel.app/ 
 
 ## Project images:
 ![home_page](/public/home.png)
